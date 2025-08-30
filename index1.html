@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, My Makad 🎉❤️</title>
+    <style>
+        /* General Styles */
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap');
+        
+        :root {
+            --pink: #ff66b2;
+            --light-pink: #ff99c8;
+            --pale-pink: #ffe6f0;
+            --dark-pink: #e60073;
+            --text: #333;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--pale-pink);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Sparkle Canvas */
+        canvas#sparkleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Header */
+        header {
+            z-index: 2;
+            position: relative;
+            text-align: center;
+            padding: 40px 10px;
+            background: linear-gradient(45deg, var(--pink), var(--light-pink), var(--pale-pink));
+            color: white;
+            animation: fadeIn 2s ease-in-out;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            margin-top: 15px;
+            font-weight: 300;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Sections */
+        .section {
+            padding: 25px;
+            margin: 30px auto;
+            background: rgba(255,255,255,0.9);
+            border-radius: 20px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            width: 85%;
+            max-width: 800px;
+            animation: slideIn 1s ease-out;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,102,178,0.2);
+        }
+
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--pink), var(--light-pink));
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--dark-pink);
+        }
+
+        /* Gallery */
+        .gallery-container {
+            position: relative;
+        }
+
+        .gallery {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 20px;
+            padding: 15px 0;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE */
+        }
+
+        .gallery::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        .gallery img {
+            flex: 0 0 auto;
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .gallery img:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 25px rgba(255,102,178,0.4);
+            border-color: var(--pink);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: fadeInScale 0.4s ease-out;
+        }
+
+        .close {
+            position: absolute;
+            top: -40px;
+            right: -10px;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .close:hover {
+            transform: rotate(90deg);
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Timeline */
+        .timeline ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline li {
+            background: #fff5f7;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 1rem;
+            position: relative;
+            padding-left: 50px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .timeline li:hover {
+            transform: translateY(-3px);
+            background: #ffebf0;
+        }
+
+        .timeline li::before {
+            content: "❤️";
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            font-size: 1.3rem;
+        }
+
+        .timeline-date {
+            display: block;
+            font-weight: bold;
+            color: var(--dark-pink);
+            margin-bottom: 5px;
+        }
+
+        /* Video Section */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 aspect ratio */
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Notes */
+        .notes p {
+            background: #fff5f7;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--pink);
+        }
+
+        .notes p::before {
+            content: """;
+            font-family: Georgia, serif;
+            font-size: 4rem;
+            color: rgba(255,102,178,0.1);
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            line-height: 1;
+        }
+        
+        /* Interactive Button */
+        .interactive {
+            text-align: center;
+            padding: 25px 0;
+        }
+
+        .interactive button {
+            padding: 15px 30px;
+            background: linear-gradient(45deg, var(--pink), var(--light-pink));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255,102,178,0.4);
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interactive button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255,102,178,0.6);
+        }
+
+        .interactive button::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255,255,255,0) 45%,
+                rgba(255,255,255,0.8) 50%,
+                rgba(255,255,255,0) 55%
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+
+        .gift-message {
+            display: none;
+            background: white;
+            padding: 30px;
+            margin-top: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            animation: fadeIn 0.8s ease-out;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: center;
+            border: 1px solid #ffebf0;
+        }
+
+        .gift-message b {
+            color: var(--dark-pink);
+            font-weight: 600;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            margin-top: 20px;
+            color: var(--pink);
+        }
+
+        /* Floating Hearts */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart-shape {
+            position: absolute;
+            font-size: 20px;
+            color: var(--pink);
+            opacity: 0;
+            animation: float 6s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            header p {
+                font-size: 1.1rem;
+            }
+            
+            .section {
+                width: 90%;
+                padding: 20px;
+            }
+            
+            .gallery img {
+                width: 180px;
+                height: 180px;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #ffebf0;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--pink);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <!-- Sparkle Canvas -->
+    <canvas id="sparkleCanvas"></canvas>
+
+    <header>
+        <h1>Happy Birthday, My Makad ❤️</h1>
+        <p>You're the most beautiful part of my life, and today is all about you 🌹</p>
+    </header>
+
+    <!-- Photo Gallery -->
+    <div class="section gallery-container">
+        <h2>Our Beautiful Memories Together</h2>
+        <p style="text-align: center; color: var(--dark-pink); margin-top: -15px;">Click on any photo to view larger</p>
+        
+        <div class="gallery" id="gallery">
+            <img src="s1.jpg" alt="Our memory 1" onclick="openModal(this)">
+            <img src="s2.jpg" alt="Our memory 2" onclick="openModal(this)">
+            <img src="s3.jpg" alt="Our memory 3" onclick="openModal(this)">
+            <img src="s4.jpg" alt="Our memory 4" onclick="openModal(this)">
+            <img src="s5.jpg" alt="Our memory 5" onclick="openModal(this)">
+            <img src="s6.jpg" alt="Our memory 6" onclick="openModal(this)">
+            <img src="s7.jpg" alt="Our memory 7" onclick="openModal(this)">
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="" alt="Full View">
+        </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="section timeline">
+        <h2>Our Journey Together</h2>
+        <ul>
+            <li>
+                <span class="timeline-date">07/06/2023 💕🤩</span>
+                Aai shappat mala aaj pan to internship cha first day aatavto jya divsi mi mazya dream girl la baghil hot
+            </li>
+            <li>
+                <span class="timeline-date">June-July 2023 💕</span>
+                Mg tyanantr mi tuzyasobt javlpass 3 weeks bolalo nasel karn tu ashi first mulgi hoti ji mala first day pasun avdaychi. Mg nantr halu halu apn bolayla laglo 🙈 that's the best part of my life 🤭✨
+            </li>
+            <li>
+                <span class="timeline-date">20/07/2023 🤝💖</span>
+                Mg yeto the hardest day of my life 💔 jevva mi tula prapose kela to divas 🥺 tyacyantr mi first time tuza hat pakdla hota ani mi tula tevva mazya feelings sangitlya hotya
+            </li>
+            <li>
+                <span class="timeline-date">21/07/2023 💔</span>
+                Nantr mg yeto company cha last day 21/07/2023 tula mi bhetayla bolvl tula kiti request kelya tri tu nahi bolali bhetayla tevva mala khup heart zalel. Nantr tula n sangta bus stop vr alo mala tevva vatl hot ki mi tula ek last time baghel as... 😢
+            </li>
+            <li>
+                <span class="timeline-date">24/07/2023 📅💖</span>
+                But bappa ne ts kel nahi nantr mg yeto to divas jo mi imagine tr khup kela hota pan mala vatl navt ki tu tya divshi maza prapose accept karsil 🙏 the best day means I cannot express my happiness level in words 🥳
+            </li>
+            <li>
+                Samruddhi, you are the only person after my family that I would do anything for you. ❤️🌏 and I am so lucky to have you in my life 🫶💫 I'll always be there for you, no matter what. 🌟💞
+            </li>
+            <li>
+                You are the best part of my life 🧬<br>
+                Love you soo much Makad ❤️🫀
+            </li>
+        </ul>
+    </div>
+
+    <!-- Video -->
+    <div class="section">
+        <h2>Happiest Birthday Pagal ❤️🌏</h2>
+        <div class="video-container">
+            <video controls poster="video-poster.jpg">
+                <source src="v1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="section notes">
+        <h2>My Heart's Messages</h2>
+        <p>To my special person, 🌟💫 You're still important to me with or without conversation.<br> You're always in my heart. ❤️🌏</p>
+        <p>You are not just my favourite Person.<br>
+            You're the owner of my heart 🫀👸</p>
+        <p>I promise you ❤️🤞<br>
+            I will always stay loyal and committed to you and only you 🫂❤️🩹🤌</p>
+        <p>I believe in this line <br> लाखों मिले मगर कोई भी तुमसा न मिला..! 🥺💕</p>
+    </div>
+
+    <!-- Gift -->
+    <div class="section interactive">
+        <h2>Your Special Gift</h2>
+        <button onclick="revealGift()">Click to Open My Heart 🎁</button>
+        <div class="gift-message" id="giftMessage">
+            Happiest Birthday <br>
+            My Beautiful 🫀<br><br>
+            I'LL GIVE YOU<br>
+            ALL THE LOVE 🥰<br>
+            THAT ONE CAN 💕<br><br>
+            
+            <b>𝓜𝔂 𝓯𝓮𝓮𝓵𝓲𝓷𝓰𝓼 𝓯𝓸𝓻 𝔂𝓸𝓾 🥺</b><br><br>
+            
+            Ek chehra agar dil mein bas jaaye na,<br>
+            Toh lakh usse haseen mile, farq nahi padta..! 💯<br>
+            जसं की तु माझ्यासाठी 🥺❤️🫶<br><br>
+            
+            <b>You will always be my favourite incomplete wish.. ❤️🩹<br>
+            Love you so much Makad ❤️🌏</b><br><br>
+            
+            <div class="signature">Your Shubham 🫶</div>
+        </div>
+    </div>
+
+    <script>
+        // Floating Hearts Animation
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const heartCount = 15;
+            
+            for (let i = 0; i < heartCount; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart-shape';
+                    heart.innerHTML = '❤️';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.top = Math.random() * 100 + '%';
+                    heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                    heart.style.animationDuration = (Math.random() * 6 + 3) + 's';
+                    heart.style.animationDelay = (Math.random() * 5) + 's';
+                    container.appendChild(heart);
+                }, i * 300);
+            }
+        }
+
+        // Sparkle Animation
+        const canvas = document.getElementById('sparkleCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Set canvas size
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        // Sparkle particles
+        const particles = [];
+        const colors = ['#ff66b2', '#ff99c8', '#ffe6f0', '#ffdeed'];
+        
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 2 - 1;
+                this.speedY = Math.random() * 2 + 1;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.life = 100;
+            }
+            
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.size > 0.2) this.size -= 0.05;
+                this.life--;
+            }
+            
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+        
+        function createParticles() {
+            for (let i = 0; i < 3; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                particles.push(new Particle(x, y));
+            }
+        }
+        
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                
+                if (particles[i].life <= 0 || particles[i].size <= 0.2) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+            
+            createParticles();
+            requestAnimationFrame(animateParticles);
+        }
+        
+        // Gallery Auto-Scroll
+        function autoScrollGallery() {
+            const gallery = document.getElementById('gallery');
+            gallery.scrollBy(1, 0);
+            
+            if (gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth) {
+                setTimeout(() => {
+                    gallery.scrollTo(0, 0);
+                }, 2000);
+            }
+        }
+        
+        // Modal Functions
+        function openModal(img) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'flex';
+            modalImg.src = img.src;
+            
+            // Play gallery song
+            if (gallerySong) {
+                gallerySong.currentTime = 0;
+                gallerySong.play().catch(e => console.log(e));
+            }
+        }
+        
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+            
+            // Pause gallery song when modal closes
+            if (gallerySong) {
+                gallerySong.pause();
+            }
+        }
+        
+        // Gift Reveal
+        function revealGift() {
+            const giftMessage = document.getElementById('giftMessage');
+            const isVisible = giftMessage.style.display === 'block';
+            
+            if (isVisible) {
+                giftMessage.style.display = 'none';
+                if (giftSong) {
+                    giftSong.pause();
+                    giftSong.currentTime = 0;
+                }
+            } else {
+                giftMessage.style.display = 'block';
+                giftMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                if (!giftSong) {
+                    giftSong = new Audio('song2.mp3');
+                }
+                giftSong.play().catch(e => console.log(e));
+            }
+        }
+        
+        // Audio Elements
+        let gallerySong, giftSong, birthdaySong;
+        
+        // Initialize
+        window.onload = function() {
+            createFloatingHearts();
+            animateParticles();
+            
+            // Set interval for gallery auto-scroll
+            setInterval(autoScrollGallery, 20);
+            
+            // Load audio files
+            gallerySong = new Audio('lovesong.mp3');
+            giftSong = new Audio('song2.mp3');
+            birthdaySong = new Audio('bsong.mp3');
+            birthdaySong.loop = true;
+            
+            // Play birthday song after user interaction
+            document.body.addEventListener('click', function initAudio() {
+                birthdaySong.play().catch(e => console.log(e));
+                document.body.removeEventListener('click', initAudio);
+            });
+            
+            // Replace with your actual photos
+            // const galleryImages = document.querySelectorAll('.gallery img');
+            // galleryImages[0].src = "photo1.jpg";
+            // galleryImages[1].src = "photo2.jpg";
+            // etc...
+        };
+    </script>
+</body>
+</html>

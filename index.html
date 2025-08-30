@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Makad🎉🫀</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Dancing Script', cursive, 'Montserrat', sans-serif;
+            background-color: #ffe6f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Canvas for Sparkle Effect */
+        canvas#sparkleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Other existing styles remain unchanged */
+        header {
+            z-index: 2;
+            position: relative;
+            text-align: center;
+            padding: 30px 10px;
+            background: linear-gradient(45deg, #ff66b2, #ff99c8, #ffe6f0);
+            color: white;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            animation: colorChange 3s infinite;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        @keyframes colorChange {
+
+            0%,
+            100% {
+                color: #fff;
+            }
+
+            50% {
+                color: #ffdeed;
+            }
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 15px;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            animation: slideIn 1.5s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 15px;
+            padding-bottom: 10px;
+        }
+
+        .gallery img {
+            flex: 0 0 auto;
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 20px rgba(255, 102, 178, 0.6);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            /* Ensure it's above other elements */
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+        }
+
+        .modal .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+        }
+
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 20px rgba(255, 102, 178, 0.6);
+        }
+
+        /* Timeline */
+        .timeline ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline li {
+            background: #ffe6e6;
+            margin-bottom: 12px;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline li::before {
+            /* content: "🎉"; */
+            margin-right: 10px;
+        }
+
+        /* Video Section */
+        .video video {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Notes */
+        .notes p {
+            background: #fef2f4;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        /* Interactive Button */
+        .interactive {
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        .interactive button {
+            padding: 12px 25px;
+            background-color: #ff66b2;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            animation: bounce 2s infinite;
+        }
+
+        .interactive button:hover {
+            background-color: #e655a3;
+            transform: scale(1.1);
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .interactive p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        @media (min-width: 600px) {
+            header h1 {
+                font-size: 3rem;
+            }
+
+            header p {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .section {
+                width: 70%;
+            }
+
+
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <canvas id="sparkleCanvas"></canvas>
+        <h1>Happy Birthday Makad❤️🫀</h1>
+        <p>You make every moment magical, and this is my small way of showing how much you mean to me❤️🌍</p>
+    </header>
+
+    <center>
+        <h2>Photo Gallery</h2>
+    </center>
+    <center>
+        <h5>click on any Photo</h5>
+    </center>
+    <div class="section gallery" id="gallery">
+        <img src="s1.jpg" alt="Memory 1" onclick="openModal(this)">
+        <img src="s2.jpg" alt="Memory 2" onclick="openModal(this)">
+        <img src="s3.jpg" alt="Memory 3" onclick="openModal(this)">
+        <img src="s4.jpg" alt="Memory 4" onclick="openModal(this)">
+        <img src="s6.jpg" alt="Memory 5" onclick="openModal(this)">
+        <img src="s5.jpg" alt="Memory 5" onclick="openModal(this)">
+        <img src="s7.jpg" alt="Memory 5" onclick="openModal(this)">
+    </div>
+    <!-- Modal for Image Preview -->
+    <div class="modal" id="imageModal">
+        <button class="close" onclick="closeModal()">×</button>
+        <img id="modalImage" src="" alt="Full View">
+    </div>
+
+    <div class="section timeline">
+        <h2>memories🥹</h2>
+        <ul>
+
+            <li>Aai shappat mala aaj pan to internship cha first day
+                aatavto jya divsi mi mazya dream girl la baghil hot 07/06/2023💕🤩
+            </li>
+            <li>mg tyanantr mi tuzyasobt javlpass 3 weeks bolalo nasel karn tu ashi
+                first mulgi hoti ji mala attitude dyaychi pan yarr tu mala first
+                day pasun avdaychi💕 mg nantr halu halu apn bolayla laglo🙈
+                that's the best part of my life🤭✨
+            </li>
+            <li>
+                mg yeto the hardest day of my life💔 jevva mi tula prapose kela to divas🥺
+                tyacyantr mi first time tuza hat pakdla hota🤝 20/07/2023📅 ani mi tula tevva
+                mazya feelings sangitlya hotya💖
+            </li>
+            <li>
+                nantr mg yeto company cha last day 21/07/2023 tula mi bhetayla bolvl tula kiti
+                request kelya tri tu nahi bolali bhetayla tevva mala khup heart zalel💔 nantr
+                tula n sangta bus stop vr alo mala tevva vatl hot ki mi tula ek last time baghel as...😢
+            </li>
+            <li>
+                but bappa ne ts kel nahi nantr mg yeto to divas jo mi imagine tr khup kela hota pan
+                mala vatl navt ki tu tya divshi maza prapose accept karsil 🙏💌 24/07/2023 📅 the
+                best day means I cannot express my happiness level in words 🥳💖
+            </li>
+            <li>Samruddhi, you are the only person after my family that I would do anything for you.❤️🌏
+                and I am so lucky to have you in my life🫶💫 I’ll always be there for you, no matter what.🌟💞</li>
+            <li>you are the best part of my life🧬<br>
+                love you soo much Makad❤️🫀
+            </li>
+        </ul>
+    </div>
+
+    <div class="section video">
+        <h2>Happiest Birthday Pagal❤️🌏</h2>
+        <video controls>
+            <source src="v1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="section notes">
+        <h2>Personal Notes</h2>
+        <p>To my special person,🌟💫 You're still important to me with or without
+            conversation.<br> You're always in my heart.❤️🌏</p>
+        <p>You are not just my favourite Person.<br>
+            You're the owner of my heart🫀👸</p>
+        <p>I promise you❤️🤞<br>
+            I will always stay loyal and committed to you and only you🫂❤‍🩹🤌</p>
+        <p>I believe in this line <br> लाखों मिले मगर कोई भी तुमसा न मिला..!🥺💕</p>
+    </div>
+
+    <div class="section interactive">
+        <h2>Surprise</h2>
+        <button onclick="revealGift()">Open Your Gift 🎁</button>
+        <p id="giftMessage" style="display: none;">Happiest Birthday <br>
+            My Beautiful🫀<br>
+            I'LL GIVE YOU<br>
+            ALL THE LOVE🥰<br>
+            THAT ONE CAN💕<br>
+            Your <b>@Shubham🫶</b><br><br>
+            <b> 𝓜𝔂 𝓯𝓮𝓮𝓵𝓲𝓷𝓰𝓼 𝓯𝓸𝓻 𝔂𝓸𝓾🥺</b><br>
+            <br>
+            Ek chehra agar dil mein bas jaaye na,<br>
+            Toh lakh usse haseen mile, farq nahi padta..!💯<br>
+            जसं की तु माझ्यासाठी🥺❤️🫶
+            <br>
+            <br>
+            <b> You will always be my favourite incomplete wish..❤‍🩹
+                <br>Love you so much Makad❤️🌏
+            </b>
+        </p>
+    </div>
+
+
+    <script>
+        function revealGift() {
+            const giftMessage = document.getElementById('giftMessage');
+            giftMessage.style.display = 'block';
+        }
+
+        // Auto-scroll function
+        function autoScroll() {
+            const gallery = document.getElementById('gallery');
+            gallery.scrollBy(300, 0); // Scroll by 300 pixels to the right
+            if (gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth) {
+                gallery.scrollTo(0, 0); // Scroll back to the start when reaching the end
+            }
+        }
+
+        // Set interval for auto-scroll
+        setInterval(autoScroll, 2000); // Scroll every 2 seconds
+
+        // Function to open the modal with the clicked image
+        function openModal(img) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            modal.style.display = 'flex';
+            modalImage.src = img.src;
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+
+        const canvas = document.getElementById('sparkleCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Resize canvas to cover the entire screen
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Sparkle particle array
+        const particles = [];
+        const colors = ['#ff66b2', '#ff99c8', '#ffe6f0', '#ffdeed'];
+
+        // Create particle object
+        class Particle {
+            constructor(x, y, size, speedX, speedY, color) {
+                this.x = x;
+                this.y = y;
+                this.size = size;
+                this.speedX = speedX;
+                this.speedY = speedY;
+                this.color = color;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.size > 0.2) this.size -= 0.1; // Shrink particle over time
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        // Create particles
+        function createParticles() {
+            for (let i = 0; i < 5; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const size = Math.random() * 3 + 1;
+                const speedX = Math.random() * 2 - 1;
+                const speedY = Math.random() * 3 + 1;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particles.push(new Particle(x, y, size, speedX, speedY, color));
+            }
+        }
+
+        // Animate particles
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                // Remove particles that are too small
+                if (particles[i].size <= 0.2) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+            createParticles();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+
+        let gallerySong;
+
+        // Function to play the song when a gallery image is clicked
+        function playSongOnImageClick() {
+            gallerySong = new Audio('lovesong.mp3');
+            gallerySong.loop = true; // Loop the song
+
+            // Play the song when an image in the gallery is clicked
+            document.querySelectorAll('.gallery img').forEach((img) => {
+                img.addEventListener('click', () => {
+                    gallerySong.play().catch((error) => {
+                        console.error("Error playing audio:", error);
+                    });
+                });
+            });
+        }
+
+        // Function to stop the song when the gallery is out of view
+        function stopSongOnScroll() {
+            const gallerySection = document.getElementById('gallery');
+
+            // Set up the IntersectionObserver to detect when the gallery section is no longer in view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting && gallerySong) {
+                        gallerySong.pause(); // Stop the song when the gallery is out of view
+                        gallerySong.currentTime = 0; // Reset to the start of the song
+                    }
+                });
+            }, { threshold: 0.5 }); // Trigger when 50% of the gallery is not in view
+
+            observer.observe(gallerySection); // Observe the gallery section
+        }
+
+        // Call the functions after the page is loaded
+        window.onload = () => {
+            playSongOnImageClick(); // Play song when an image is clicked
+            stopSongOnScroll(); // Stop song when gallery scrolls out of view
+        };
+
+
+        //gift song
+        let giftSong; // Declare the audio variable
+
+        function revealGift() {
+            const giftMessage = document.getElementById('giftMessage');
+
+            // Check if the message is already visible
+            if (giftMessage.style.display === 'block') {
+                giftMessage.style.display = 'none'; // Hide the gift message
+                if (giftSong) {
+                    giftSong.pause(); // Stop the song
+                    giftSong.currentTime = 0; // Reset to the beginning
+                }
+            } else {
+                giftMessage.style.display = 'block'; // Show the gift message
+                giftMessage.scrollIntoView({ behavior: 'smooth', block: 'center' }); // Smooth scroll to the gift message
+                if (!giftSong) {
+                    giftSong = new Audio('song2.mp3'); // Load the gift song
+                }
+                giftSong.play().catch((error) => {
+                    console.error("Error playing gift song:", error);
+                });
+            }
+        }
+
+
+    // Play the birthday song
+const audio = new Audio('bsong.mp3');
+
+// Wait for user interaction to enable autoplay
+window.addEventListener('DOMContentLoaded', () => {
+    const playAudio = () => {
+        audio.play().catch(error => {
+            console.log('Autoplay failed:', error);
+        });
+    };
+
+    // Attach a one-time event listener to trigger audio on the first click
+    document.body.addEventListener('click', () => {
+        playAudio();
+        console.log('Audio playback started.');
+        setTimeout(() => {
+            audio.pause();
+            console.log('Audio playback stopped after 10 seconds.');
+        }, 10000); // Stop the audio after 10 seconds
+    }, { once: true }); // Ensures the listener runs only once
+});
+
+
+
+    </script>
+</body>
+
+</html>
